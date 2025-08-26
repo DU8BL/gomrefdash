@@ -1,0 +1,16 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+.env
+app
+mrefd.xml
+mrefd.old
+gomrefdash
+docker-compose.yml
+.vscode
+gomrefdash.toml
