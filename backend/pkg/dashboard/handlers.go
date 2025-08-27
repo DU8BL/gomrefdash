@@ -98,9 +98,27 @@ func (d *Dashboard) showStationDataJSON(c *gin.Context) {
 
 func (d *Dashboard) showPeers(c *gin.Context) {
 	d.Reflector.refreshIfNeeded()
-	d.Reflector.Lock.Lock()
-	defer d.Reflector.Lock.Unlock()
-	c.JSON(200, d.Reflector.ReflectorData.Peers)
+
+	type peersData struct {
+		Callsign      string `json:"callsign"`
+		IPAddress     string `json:"ip"`
+		LinkedModule  string `json:"linkedmodule"`
+		ConnectTime   string `json:"connecttime"`
+		LastHeardTime string `json:"lastheardtime"`
+	}
+
+	peers := make([]peersData, 0, len(d.Reflector.ReflectorData.Peers))
+	for _, peer := range d.Reflector.ReflectorData.Peers {
+		peers = append(peers, peersData{
+			Callsign:      peer.Callsign,
+			IPAddress:     maskIP(peer.IPAddress),
+			LinkedModule:  peer.LinkedModule,
+			ConnectTime:   peer.ConnectTime,
+			LastHeardTime: peer.LastHeardTime,
+		})
+	}
+
+	c.JSON(200, peers)
 }
 
 func (d *Dashboard) showLinksDataJSON(c *gin.Context) {
@@ -118,12 +136,17 @@ func (d *Dashboard) showLinksDataJSON(c *gin.Context) {
 
 	links := make([]linkData, 0, len(d.Reflector.ReflectorData.Nodes))
 	for _, node := range d.Reflector.ReflectorData.Nodes {
+		listenonly := "NO"
+		if strings.EqualFold(node.ListenOnly, "true") {
+			listenonly = "YES"
+		}
+
 		links = append(links, linkData{
 			Callsign:      node.Callsign,
 			IPAddress:     maskIP(node.IPAddress),
 			LinkedModule:  node.LinkedModule,
 			Protocol:      node.Protocol,
-			ListenOnly:    strings.ToUpper(node.ListenOnly),
+			ListenOnly:    listenonly,
 			ConnectTime:   node.ConnectTime,
 			LastHeardTime: node.LastHeardTime,
 		})

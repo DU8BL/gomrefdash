@@ -8,11 +8,11 @@
               <tr>
                 <th class="gt-xs text-right" style="max-width:50px">#</th>
                 <th class="text-center" style="max-width:50px">Flag</th>
-                <th class="text-center" style="max-width:150px"><q-btn flat no-caps>Callsign</q-btn></th>
+                <th class="text-center" style="max-width:150px"><q-btn flat no-caps>Source</q-btn></th>
                 <th class="gt-xs text-left" style="max-width:50px">Suffix</th>
                 <th class="gt-xs text-left" style="max-width:80px">Destination</th>
                 <th class="gt-xs text-left" style="max-width:50px">Mode</th>
-                <th class="gt-xs text-left" style="max-width:80px">Via/Peer</th>
+                <th class="gt-xs text-left" style="max-width:80px">Via / Peer</th>
                 <th class="text-left" style="max-width:50px">Module</th>
                 <th class="text-left" style="max-width:150px">Last Heard</th>
               </tr>

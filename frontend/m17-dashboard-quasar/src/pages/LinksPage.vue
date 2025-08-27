@@ -30,7 +30,7 @@ import axios from 'axios';
 const link_columns = [
   {
     name: "callsign",
-    label: "Callsign",
+    label: "Station",
     field: "callsign",
     sortable: true,
   },

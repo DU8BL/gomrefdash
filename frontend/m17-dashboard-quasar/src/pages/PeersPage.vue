@@ -30,7 +30,7 @@ import axios from 'axios';
 const peer_columns = [
   {
     name: "callsign",
-    label: "Callsign",
+    label: "Peer",
     field: "callsign",
     sortable: true,
   },
